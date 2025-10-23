@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starsgram</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .profile-info h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .profile-info p {
+            color: #b2becd;
+            font-size: 14px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .menu-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px 15px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .menu-item:hover::before {
+            left: 100%;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .menu-item:nth-child(1) {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(254, 202, 87, 0.15));
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .menu-item:nth-child(2) {
+            background: linear-gradient(135deg, rgba(72, 219, 251, 0.15), rgba(29, 209, 161, 0.15));
+            border: 1px solid rgba(72, 219, 251, 0.3);
+        }
+        
+        .menu-item:nth-child(3) {
+            background: linear-gradient(135deg, rgba(255, 159, 243, 0.15), rgba(106, 137, 204, 0.15));
+            border: 1px solid rgba(255, 159, 243, 0.3);
+        }
+        
+        .menu-item:nth-child(4) {
+            background: linear-gradient(135deg, rgba(116, 82, 255, 0.15), rgba(36, 204, 167, 0.15));
+            border: 1px solid rgba(116, 82, 255, 0.3);
+        }
+        
+        .menu-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .menu-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .menu-item:nth-child(1) h3 { color: #ff6b6b; }
+        .menu-item:nth-child(2) h3 { color: #48dbfb; }
+        .menu-item:nth-child(3) h3 { color: #ff9ff3; }
+        .menu-item:nth-child(4) h3 { color: #a29bfe; }
+        
+        .menu-item p {
+            font-size: 13px;
+            color: #b2becd;
+            font-weight: 500;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 18px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-item {
+            text-align: center;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #b2becd;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .buy-stars-page {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .all-packages-page {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .buy-stars-page h2,
+        .all-packages-page h2 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        
+        .all-packages-page h2 {
+            background: linear-gradient(45deg, #48dbfb, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .recipient-section {
+            margin-bottom: 25px;
+        }
+        
+        .recipient-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #b2becd;
+            font-weight: 500;
+        }
+        
+        .recipient-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .recipient-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #48dbfb;
+            border-radius: 6px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox.checked {
+            background: #48dbfb;
+            box-shadow: 0 0 10px rgba(72, 219, 251, 0.5);
+        }
+        
+        .checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+        
+        .username-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            color: white;
+            width: 100%;
+            margin-top: 12px;
+            display: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .username-input:focus {
+            outline: none;
+            border-color: #48dbfb;
+            box-shadow: 0 0 10px rgba(72, 219, 251, 0.3);
+        }
+        
+        .stars-input-section {
+            margin-bottom: 25px;
+        }
+        
+        .stars-input-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #b2becd;
+            font-weight: 500;
+        }
+        
+        .stars-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            color: white;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .stars-input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        .packages-section {
+            margin-bottom: 25px;
+        }
+        
+        .packages-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #b2becd;
+            font-weight: 500;
+        }
+        
+        .package-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .package-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+        
+        .package-option.selected {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(254, 202, 87, 0.15));
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+        
+        .package-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .package-stars {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .package-price {
+            font-size: 14px;
+            color: #b2becd;
+        }
+        
+        .package-note {
+            font-size: 12px;
+            color: #feca57;
+            font-style: italic;
+            margin-top: 4px;
+        }
+        
+        .all-packages-link {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .all-packages-link a {
+            color: #48dbfb;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .all-packages-link a:hover {
+            color: #ff9ff3;
+            text-shadow: 0 0 10px rgba(255, 159, 243, 0.5);
+        }
+        
+        .promo-code {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .promo-code a {
+            color: #48dbfb;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .promo-code a:hover {
+            color: #ff9ff3;
+            text-shadow: 0 0 10px rgba(255, 159, 243, 0.5);
+        }
+        
+        .payment-button,
+        .select-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .select-button {
+            background: linear-gradient(135deg, #48dbfb 0%, #a29bfe 100%);
+            box-shadow: 0 5px 15px rgba(72, 219, 251, 0.4);
+        }
+        
+        .payment-button::before,
+        .select-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .payment-button:hover::before,
+        .select-button:hover::before {
+            left: 100%;
+        }
+        
+        .payment-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        
+        .select-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(72, 219, 251, 0.6);
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(-5px);
+        }
+        
+        .all-packages-list {
+            margin-bottom: 25px;
+        }
+        
+        .all-package-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .all-package-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+        
+        .all-package-item.selected {
+            background: linear-gradient(135deg, rgba(72, 219, 251, 0.15), rgba(162, 155, 254, 0.15));
+            border: 1px solid rgba(72, 219, 251, 0.3);
+            box-shadow: 0 5px 15px rgba(72, 219, 251, 0.2);
+        }
+        
+        .all-package-info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .all-package-stars {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .all-package-price {
+            font-size: 14px;
+            color: #b2becd;
+        }
+        
+        .all-package-note {
+            font-size: 12px;
+            color: #feca57;
+            font-style: italic;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Starsgram</h1>
+        </div>
+        
+        <div class="profile">
+            <div class="profile-avatar" id="userAvatar">А</div>
+            <div class="profile-info">
+                <h2 id="userName">Артём</h2>
+                <p id="userUsername">@artem4514</p>
+            </div>
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-item" onclick="showBuyStarsPage()">
+                <span class="menu-icon">⭐</span>
+                <h3>Купить</h3>
+                <p>звёзды</p>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">💫</span>
+                <h3>Продать</h3>
+                <p>звёзды</p>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">⚡</span>
+                <h3>Купить</h3>
+                <p>TON</p>
+            </div>
+            <div class="menu-item">
+                <span class="menu-icon">👑</span>
+                <h3>Premium</h3>
+                <p>оформить</p>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <div class="nav-item active">Главная</div>
+            <div class="nav-item">Профиль</div>
+        </div>
+        
+        <!-- Страница покупки звёзд -->
+        <div class="buy-stars-page" id="buyStarsPage">
+            <button class="back-button" onclick="hideBuyStarsPage()">
+                ← Назад
+            </button>
+            
+            <h2>Купить звёзды</h2>
+            
+            <div class="recipient-section">
+                <h3>Получатель</h3>
+                <div class="recipient-option" onclick="toggleRecipient(this)">
+                    <div class="checkbox checked"></div>
+                    <span>/купить себе</span>
+                </div>
+                <div class="recipient-option" onclick="toggleRecipient(this)">
+                    <div class="checkbox"></div>
+                    <span>Никнейм пользователя Telegram</span>
+                </div>
+                <input type="text" class="username-input" placeholder="Введите никнейм">
+            </div>
+            
+            <div class="stars-input-section">
+                <h3>Звёзд</h3>
+                <input type="number" class="stars-input" placeholder="Введите число от 50 до 20 000" min="50" max="20000">
+            </div>
+            
+            <div class="packages-section">
+                <h3>Или выберите пакет</h3>
+                
+                <div class="package-option" onclick="selectPackage(this)">
+                    <div class="package-info">
+                        <div class="package-stars">50 звёзд</div>
+                        <div class="package-price">83 ₽ 0.9 $</div>
+                    </div>
+                </div>
+                
+                <div class="package-option" onclick="selectPackage(this)">
+                    <div class="package-info">
+                        <div class="package-stars">100 звёзд</div>
+                        <div class="package-price">166 ₽ 1.8 $</div>
+                    </div>
+                </div>
+                
+                <div class="package-option" onclick="selectPackage(this)">
+                    <div class="package-info">
+                        <div class="package-stars">500 звёзд</div>
+                        <div class="package-price">820 ₽ 8.9 $</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="all-packages-link">
+                <a href="#" onclick="showAllPackagesPage()">Все пакеты</a>
+            </div>
+            
+            <div class="promo-code">
+                <a href="#">Ввести промокод</a>
+            </div>
+            
+            <button class="payment-button">Оплатить через СБП</button>
+        </div>
+        
+        <!-- Страница всех пакетов -->
+        <div class="all-packages-page" id="allPackagesPage">
+            <button class="back-button" onclick="hideAllPackagesPage()">
+                ← Назад
+            </button>
+            
+            <h2>Все пакеты</h2>
+            
+            <div class="all-packages-list">
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">50 звёзд</div>
+                        <div class="all-package-price">83 ₽ 0.9 $</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">100 звёзд</div>
+                        <div class="all-package-price">166 ₽ 1.8 $</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">200 звёзд</div>
+                        <div class="all-package-price">332 ₽ 3.6 $</div>
+                        <div class="all-package-note">Берут чаще</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">500 звёзд</div>
+                        <div class="all-package-price">820 ₽ 8.9 $</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">1 000 звёзд</div>
+                        <div class="all-package-price">1 620 ₽ 17.6 $</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">2 500 звёзд</div>
+                        <div class="all-package-price">4 050 ₽ 44 $</div>
+                        <div class="all-package-note">хватит на 100 роз</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">5 000 звёзд</div>
+                        <div class="all-package-price">8 000 ₽ 87 $</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">10 000 звёзд</div>
+                        <div class="all-package-price">16 000 ₽ 174 $</div>
+                    </div>
+                </div>
+                
+                <div class="all-package-item" onclick="selectAllPackage(this)">
+                    <div class="all-package-info">
+                        <div class="all-package-stars">20 000 звёзд</div>
+                        <div class="all-package-price">32 000 ₽ 348 $</div>
+                        <div class="all-package-note">хватит надолго</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="select-button">Выбрать</button>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Telegram Web App
+        let tg = window.Telegram.WebApp;
+        
+        // Раскрываем на весь экран
+        tg.expand();
+        
+        // Включаем подтверждение закрытия
+        tg.enableClosingConfirmation();
+        
+        // Получаем данные пользователя
+        const user = tg.initDataUnsafe.user;
+        
+        // Заполняем профиль пользователя
+        if (user) {
+            document.getElementById('userName').textContent = user.first_name || 'Пользователь';
+            document.getElementById('userUsername').textContent = user.username ? '@' + user.username : 'Telegram';
+            document.getElementById('userAvatar').textContent = user.first_name ? user.first_name[0] : 'Т';
+        }
+        
+        function showBuyStarsPage() {
+            document.getElementById('buyStarsPage').style.display = 'block';
+        }
+        
+        function hideBuyStarsPage() {
+            document.getElementById('buyStarsPage').style.display = 'none';
+        }
+        
+        function showAllPackagesPage() {
+            document.getElementById('allPackagesPage').style.display = 'block';
+            document.getElementById('buyStarsPage').style.display = 'none';
+        }
+        
+        function hideAllPackagesPage() {
+            document.getElementById('allPackagesPage').style.display = 'none';
+            document.getElementById('buyStarsPage').style.display = 'block';
+        }
+        
+        function toggleRecipient(element) {
+            const checkboxes = document.querySelectorAll('.recipient-option .checkbox');
+            const usernameInput = document.querySelector('.username-input');
+            
+            checkboxes.forEach(cb => cb.classList.remove('checked'));
+            element.querySelector('.checkbox').classList.add('checked');
+            
+            if (element.textContent.includes('Никнейм')) {
+                usernameInput.style.display = 'block';
+            } else {
+                usernameInput.style.display = 'none';
+            }
+        }
+        
+        function selectPackage(element) {
+            const packages = document.querySelectorAll('.package-option');
+            packages.forEach(pkg => pkg.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            const starsCount = element.querySelector('.package-stars').textContent.split(' ')[0];
+            document.querySelector('.stars-input').value = starsCount;
+        }
+        
+        function selectAllPackage(element) {
+            const packages = document.querySelectorAll('.all-package-item');
+            packages.forEach(pkg => pkg.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            const starsCount = element.querySelector('.all-package-stars').textContent.split(' ')[0];
+            // Здесь можно добавить логику для выбора пакета
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Выбираем первый пакет по умолчанию
+            document.querySelector('.package-option').click();
+        });
+    </script>
+</body>
+</html>
