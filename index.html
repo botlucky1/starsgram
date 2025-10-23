@@ -77,6 +77,12 @@
             font-size: 14px;
         }
         
+        .user-id {
+            font-size: 12px;
+            color: #8899a6;
+            margin-top: 3px;
+        }
+        
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -192,55 +198,83 @@
             color: white;
         }
         
-        .buy-stars-page {
+        /* Стили для всех окон */
+        .window {
             display: none;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 25px;
-            border-radius: 20px;
-            margin-top: 20px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideUp 0.4s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
         }
         
-        .all-packages-page {
-            display: none;
-            background: rgba(255, 255, 255, 0.08);
+        .window-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             padding: 25px;
             border-radius: 20px;
-            margin-top: 20px;
-            backdrop-filter: blur(15px);
+            width: 90%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: windowAppear 0.3s ease;
         }
         
-        @keyframes slideUp {
+        @keyframes windowAppear {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translate(-50%, -40%);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translate(-50%, -50%);
             }
         }
         
-        .buy-stars-page h2,
-        .all-packages-page h2 {
-            font-size: 24px;
+        .window-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 25px;
-            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .window-title {
+            font-size: 24px;
+            font-weight: 700;
             background: linear-gradient(45deg, #ff6b6b, #feca57);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
         }
         
-        .all-packages-page h2 {
-            background: linear-gradient(45deg, #48dbfb, #a29bfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .close-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-button:hover {
+            background: rgba(255, 107, 107, 0.3);
+            transform: rotate(90deg);
         }
         
         .recipient-section {
@@ -399,24 +433,6 @@
             margin-top: 4px;
         }
         
-        .all-packages-link {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .all-packages-link a {
-            color: #48dbfb;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .all-packages-link a:hover {
-            color: #ff9ff3;
-            text-shadow: 0 0 10px rgba(255, 159, 243, 0.5);
-        }
-        
         .promo-code {
             text-align: center;
             margin-bottom: 25px;
@@ -428,6 +444,7 @@
             font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .promo-code a:hover {
@@ -436,7 +453,7 @@
         }
         
         .payment-button,
-        .select-button {
+        .action-button {
             background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
             color: white;
             border: none;
@@ -452,13 +469,18 @@
             overflow: hidden;
         }
         
-        .select-button {
-            background: linear-gradient(135deg, #48dbfb 0%, #a29bfe 100%);
-            box-shadow: 0 5px 15px rgba(72, 219, 251, 0.4);
+        .action-button.ton {
+            background: linear-gradient(135deg, #0088cc 0%, #00aaff 100%);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+        }
+        
+        .action-button.premium {
+            background: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%);
+            box-shadow: 0 5px 15px rgba(254, 202, 87, 0.4);
         }
         
         .payment-button::before,
-        .select-button::before {
+        .action-button::before {
             content: '';
             position: absolute;
             top: 0;
@@ -470,7 +492,7 @@
         }
         
         .payment-button:hover::before,
-        .select-button:hover::before {
+        .action-button:hover::before {
             left: 100%;
         }
         
@@ -479,81 +501,31 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
         }
         
-        .select-button:hover {
+        .action-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(72, 219, 251, 0.6);
         }
         
-        .back-button {
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateX(-5px);
-        }
-        
-        .all-packages-list {
+        .window-content h2 {
+            font-size: 24px;
             margin-bottom: 25px;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
         }
         
-        .all-package-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+        .sell-stars-content h2 {
+            background: linear-gradient(45deg, #48dbfb, #a29bfe);
         }
         
-        .all-package-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(5px);
+        .ton-content h2 {
+            background: linear-gradient(45deg, #0088cc, #00aaff);
         }
         
-        .all-package-item.selected {
-            background: linear-gradient(135deg, rgba(72, 219, 251, 0.15), rgba(162, 155, 254, 0.15));
-            border: 1px solid rgba(72, 219, 251, 0.3);
-            box-shadow: 0 5px 15px rgba(72, 219, 251, 0.2);
-        }
-        
-        .all-package-info {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        
-        .all-package-stars {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .all-package-price {
-            font-size: 14px;
-            color: #b2becd;
-        }
-        
-        .all-package-note {
-            font-size: 12px;
-            color: #feca57;
-            font-style: italic;
-            margin-top: 4px;
+        .premium-content h2 {
+            background: linear-gradient(45deg, #feca57, #ff9ff3);
         }
     </style>
 </head>
@@ -564,30 +536,31 @@
         </div>
         
         <div class="profile">
-            <div class="profile-avatar" id="userAvatar">А</div>
+            <div class="profile-avatar" id="userAvatar">Т</div>
             <div class="profile-info">
-                <h2 id="userName">Артём</h2>
-                <p id="userUsername">@artem4514</p>
+                <h2 id="userName">Загрузка...</h2>
+                <p id="userUsername">@username</p>
+                <p class="user-id" id="userId">ID: загрузка...</p>
             </div>
         </div>
         
         <div class="menu-grid">
-            <div class="menu-item" onclick="showBuyStarsPage()">
+            <div class="menu-item" onclick="openWindow('buyStarsWindow')">
                 <span class="menu-icon">⭐</span>
                 <h3>Купить</h3>
                 <p>звёзды</p>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" onclick="openWindow('sellStarsWindow')">
                 <span class="menu-icon">💫</span>
                 <h3>Продать</h3>
                 <p>звёзды</p>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" onclick="openWindow('tonWindow')">
                 <span class="menu-icon">⚡</span>
                 <h3>Купить</h3>
                 <p>TON</p>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" onclick="openWindow('premiumWindow')">
                 <span class="menu-icon">👑</span>
                 <h3>Premium</h3>
                 <p>оформить</p>
@@ -598,20 +571,21 @@
             <div class="nav-item active">Главная</div>
             <div class="nav-item">Профиль</div>
         </div>
-        
-        <!-- Страница покупки звёзд -->
-        <div class="buy-stars-page" id="buyStarsPage">
-            <button class="back-button" onclick="hideBuyStarsPage()">
-                ← Назад
-            </button>
-            
-            <h2>Купить звёзды</h2>
+    </div>
+
+    <!-- Окно покупки звёзд -->
+    <div class="window" id="buyStarsWindow">
+        <div class="window-content">
+            <div class="window-header">
+                <h2 class="window-title">Купить звёзды</h2>
+                <button class="close-button" onclick="closeWindow('buyStarsWindow')">×</button>
+            </div>
             
             <div class="recipient-section">
                 <h3>Получатель</h3>
                 <div class="recipient-option" onclick="toggleRecipient(this)">
                     <div class="checkbox checked"></div>
-                    <span>/купить себе</span>
+                    <span>купить себе</span>
                 </div>
                 <div class="recipient-option" onclick="toggleRecipient(this)">
                     <div class="checkbox"></div>
@@ -648,10 +622,13 @@
                         <div class="package-price">820 ₽ 8.9 $</div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="all-packages-link">
-                <a href="#" onclick="showAllPackagesPage()">Все пакеты</a>
+                
+                <div class="package-option" onclick="selectPackage(this)">
+                    <div class="package-info">
+                        <div class="package-stars">1000 звёзд</div>
+                        <div class="package-price">1 620 ₽ 17.6 $</div>
+                    </div>
+                </div>
             </div>
             
             <div class="promo-code">
@@ -660,84 +637,127 @@
             
             <button class="payment-button">Оплатить через СБП</button>
         </div>
-        
-        <!-- Страница всех пакетов -->
-        <div class="all-packages-page" id="allPackagesPage">
-            <button class="back-button" onclick="hideAllPackagesPage()">
-                ← Назад
-            </button>
+    </div>
+
+    <!-- Окно продажи звёзд -->
+    <div class="window" id="sellStarsWindow">
+        <div class="window-content sell-stars-content">
+            <div class="window-header">
+                <h2 class="window-title">Продать звёзды</h2>
+                <button class="close-button" onclick="closeWindow('sellStarsWindow')">×</button>
+            </div>
             
-            <h2>Все пакеты</h2>
+            <div class="stars-input-section">
+                <h3>Количество звёзд для продажи</h3>
+                <input type="number" class="stars-input" placeholder="Введите количество звёзд" min="1">
+            </div>
             
-            <div class="all-packages-list">
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">50 звёзд</div>
-                        <div class="all-package-price">83 ₽ 0.9 $</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">100 звёзд</div>
-                        <div class="all-package-price">166 ₽ 1.8 $</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">200 звёзд</div>
-                        <div class="all-package-price">332 ₽ 3.6 $</div>
-                        <div class="all-package-note">Берут чаще</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">500 звёзд</div>
-                        <div class="all-package-price">820 ₽ 8.9 $</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">1 000 звёзд</div>
-                        <div class="all-package-price">1 620 ₽ 17.6 $</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">2 500 звёзд</div>
-                        <div class="all-package-price">4 050 ₽ 44 $</div>
-                        <div class="all-package-note">хватит на 100 роз</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">5 000 звёзд</div>
-                        <div class="all-package-price">8 000 ₽ 87 $</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">10 000 звёзд</div>
-                        <div class="all-package-price">16 000 ₽ 174 $</div>
-                    </div>
-                </div>
-                
-                <div class="all-package-item" onclick="selectAllPackage(this)">
-                    <div class="all-package-info">
-                        <div class="all-package-stars">20 000 звёзд</div>
-                        <div class="all-package-price">32 000 ₽ 348 $</div>
-                        <div class="all-package-note">хватит надолго</div>
+            <div class="packages-section">
+                <h3>Курс обмена</h3>
+                <div class="package-option">
+                    <div class="package-info">
+                        <div class="package-stars">1 звезда = 1.5 ₽</div>
+                        <div class="package-price">Минимальная сумма: 50 ₽</div>
                     </div>
                 </div>
             </div>
             
-            <button class="select-button">Выбрать</button>
+            <div class="recipient-section">
+                <h3>Реквизиты для выплаты</h3>
+                <input type="text" class="username-input" placeholder="Номер карты или кошелька" style="display: block;">
+            </div>
+            
+            <button class="action-button">Продать звёзды</button>
+        </div>
+    </div>
+
+    <!-- Окно покупки TON -->
+    <div class="window" id="tonWindow">
+        <div class="window-content ton-content">
+            <div class="window-header">
+                <h2 class="window-title">Купить TON</h2>
+                <button class="close-button" onclick="closeWindow('tonWindow')">×</button>
+            </div>
+            
+            <div class="stars-input-section">
+                <h3>Сумма в рублях</h3>
+                <input type="number" class="stars-input" placeholder="Введите сумму в ₽" min="100">
+            </div>
+            
+            <div class="packages-section">
+                <h3>Курс TON</h3>
+                <div class="package-option">
+                    <div class="package-info">
+                        <div class="package-stars">1 TON = 450 ₽</div>
+                        <div class="package-price">Актуальный курс</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recipient-section">
+                <h3>Ваш TON кошелёк</h3>
+                <input type="text" class="username-input" placeholder="Введите адрес кошелька" style="display: block;">
+            </div>
+            
+            <button class="action-button ton">Купить TON</button>
+        </div>
+    </div>
+
+    <!-- Окно Premium -->
+    <div class="window" id="premiumWindow">
+        <div class="window-content premium-content">
+            <div class="window-header">
+                <h2 class="window-title">Premium подписка</h2>
+                <button class="close-button" onclick="closeWindow('premiumWindow')">×</button>
+            </div>
+            
+            <div class="packages-section">
+                <h3>Преимущества Premium</h3>
+                <div class="package-option">
+                    <div class="package-info">
+                        <div class="package-stars">✓ Повышенные лимиты</div>
+                        <div class="package-price">До 100,000 звёзд в день</div>
+                    </div>
+                </div>
+                <div class="package-option">
+                    <div class="package-info">
+                        <div class="package-stars">✓ Приоритетная поддержка</div>
+                        <div class="package-price">24/7 помощь</div>
+                    </div>
+                </div>
+                <div class="package-option">
+                    <div class="package-info">
+                        <div class="package-stars">✓ Специальные промокоды</div>
+                        <div class="package-price">Еженедельные бонусы</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="packages-section">
+                <h3>Выберите тариф</h3>
+                <div class="package-option" onclick="selectPremiumPackage(this)">
+                    <div class="package-info">
+                        <div class="package-stars">1 месяц</div>
+                        <div class="package-price">299 ₽ / месяц</div>
+                    </div>
+                </div>
+                <div class="package-option" onclick="selectPremiumPackage(this)">
+                    <div class="package-info">
+                        <div class="package-stars">3 месяца</div>
+                        <div class="package-price">249 ₽ / месяц</div>
+                        <div class="package-note">Экономия 150 ₽</div>
+                    </div>
+                </div>
+                <div class="package-option" onclick="selectPremiumPackage(this)">
+                    <div class="package-info">
+                        <div class="package-stars">12 месяцев</div>
+                        <div class="package-price">199 ₽ / месяц</div>
+                        <div class="package-note">Экономия 1200 ₽</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-button premium">Оформить Premium</button>
         </div>
     </div>
 
@@ -757,64 +777,78 @@
         // Заполняем профиль пользователя
         if (user) {
             document.getElementById('userName').textContent = user.first_name || 'Пользователь';
-            document.getElementById('userUsername').textContent = user.username ? '@' + user.username : 'Telegram';
-            document.getElementById('userAvatar').textContent = user.first_name ? user.first_name[0] : 'Т';
+            document.getElementById('userUsername').textContent = user.username ? '@' + user.username : 'без username';
+            document.getElementById('userId').textContent = 'ID: ' + user.id;
+            document.getElementById('userAvatar').textContent = user.first_name ? user.first_name[0].toUpperCase() : 'Т';
+        } else {
+            // Если данные пользователя недоступны, показываем тестовые данные
+            document.getElementById('userName').textContent = 'Артём';
+            document.getElementById('userUsername').textContent = '@artem4514';
+            document.getElementById('userId').textContent = 'ID: 123456789';
+            document.getElementById('userAvatar').textContent = 'А';
         }
         
-        function showBuyStarsPage() {
-            document.getElementById('buyStarsPage').style.display = 'block';
+        let selectedPremiumPackage = null;
+        
+        function openWindow(windowId) {
+            document.getElementById(windowId).style.display = 'block';
         }
         
-        function hideBuyStarsPage() {
-            document.getElementById('buyStarsPage').style.display = 'none';
-        }
-        
-        function showAllPackagesPage() {
-            document.getElementById('allPackagesPage').style.display = 'block';
-            document.getElementById('buyStarsPage').style.display = 'none';
-        }
-        
-        function hideAllPackagesPage() {
-            document.getElementById('allPackagesPage').style.display = 'none';
-            document.getElementById('buyStarsPage').style.display = 'block';
+        function closeWindow(windowId) {
+            document.getElementById(windowId).style.display = 'none';
         }
         
         function toggleRecipient(element) {
-            const checkboxes = document.querySelectorAll('.recipient-option .checkbox');
-            const usernameInput = document.querySelector('.username-input');
+            const checkboxes = element.parentElement.querySelectorAll('.recipient-option .checkbox');
+            const usernameInput = element.parentElement.querySelector('.username-input');
             
             checkboxes.forEach(cb => cb.classList.remove('checked'));
             element.querySelector('.checkbox').classList.add('checked');
             
             if (element.textContent.includes('Никнейм')) {
-                usernameInput.style.display = 'block';
+                if (usernameInput) usernameInput.style.display = 'block';
             } else {
-                usernameInput.style.display = 'none';
+                if (usernameInput) usernameInput.style.display = 'none';
             }
         }
         
         function selectPackage(element) {
-            const packages = document.querySelectorAll('.package-option');
+            const packages = element.parentElement.querySelectorAll('.package-option');
             packages.forEach(pkg => pkg.classList.remove('selected'));
             element.classList.add('selected');
             
             const starsCount = element.querySelector('.package-stars').textContent.split(' ')[0];
-            document.querySelector('.stars-input').value = starsCount;
+            const starsInput = document.querySelector('#buyStarsWindow .stars-input');
+            if (starsInput) starsInput.value = starsCount;
         }
         
-        function selectAllPackage(element) {
-            const packages = document.querySelectorAll('.all-package-item');
+        function selectPremiumPackage(element) {
+            const packages = element.parentElement.querySelectorAll('.package-option');
             packages.forEach(pkg => pkg.classList.remove('selected'));
             element.classList.add('selected');
             
-            const starsCount = element.querySelector('.all-package-stars').textContent.split(' ')[0];
-            // Здесь можно добавить логику для выбора пакета
+            selectedPremiumPackage = element;
         }
+        
+        // Закрытие окон по клику на фон
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('window')) {
+                event.target.style.display = 'none';
+            }
+        });
+        
+        // Предотвращение закрытия при клике на контент
+        document.querySelectorAll('.window-content').forEach(content => {
+            content.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+        });
         
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             // Выбираем первый пакет по умолчанию
-            document.querySelector('.package-option').click();
+            const firstPackage = document.querySelector('#buyStarsWindow .package-option');
+            if (firstPackage) firstPackage.click();
         });
     </script>
 </body>
