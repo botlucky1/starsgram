@@ -323,8 +323,359 @@
             color: white;
             transform: translateY(-2px);
         }
+
+        /* Стили для страницы оплаты */
+        .payment-page {
+            display: none;
+        }
+
+        .price-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            padding: 25px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 2px 8px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
         
-        /* Стили для всех окон */
+        .price-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .price-amount {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c779d0 50%, #4bc0c8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 30px rgba(255, 107, 157, 0.3);
+        }
+        
+        .price-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .timer {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(254, 202, 87, 0.15) 100%);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            font-weight: 600;
+        }
+        
+        .timer span {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .requisites-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            padding: 25px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 2px 8px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .requisites-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .requisite-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .requisite-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(5px);
+        }
+        
+        .requisite-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .requisite-value {
+            font-size: 18px;
+            font-weight: 700;
+            word-break: break-all;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, rgba(75, 192, 200, 0.3) 0%, rgba(129, 140, 248, 0.2) 100%);
+            border: 1px solid rgba(75, 192, 200, 0.5);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .copy-btn:hover {
+            background: linear-gradient(135deg, rgba(75, 192, 200, 0.5) 0%, rgba(129, 140, 248, 0.4) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(75, 192, 200, 0.3);
+        }
+        
+        .instructions {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .upload-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .upload-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c779d0 50%, #4bc0c8 100%);
+            color: white;
+            border: none;
+            padding: 18px 25px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 15px;
+            width: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .upload-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        .upload-btn:hover::before {
+            left: 100%;
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.6);
+        }
+        
+        .file-name {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        .user-info {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 12px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .user-info div {
+            margin-bottom: 5px;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 20px;
+            border: none;
+            border-radius: 18px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c779d0 50%, #4bc0c8 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.6);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.1);
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.2) 0%, rgba(38, 222, 129, 0.15) 100%);
+            border: 1px solid rgba(0, 230, 118, 0.4);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+            backdrop-filter: blur(20px);
+        }
+        
+        .success-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00e676 0%, #26de81 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-5px);
+        }
+
+        /* Стили для окон */
         .window {
             display: none;
             position: fixed;
@@ -688,7 +1039,8 @@
 <body>
     <div class="stars" id="starsContainer"></div>
     
-    <div class="container">
+    <!-- Главная страница -->
+    <div class="container" id="mainPage">
         <div class="header">
             <h1>Starsgram</h1>
             <p>Твой путь к звёздам</p>
@@ -731,6 +1083,84 @@
         </div>
     </div>
 
+    <!-- Страница оплаты -->
+    <div class="container payment-page" id="paymentPage">
+        <div class="header">
+            <h1>Starsgram</h1>
+            <p>Безопасная оплата</p>
+        </div>
+        
+        <button class="back-button" onclick="goBackToMain()">
+            ← Назад
+        </button>
+        
+        <div class="price-card">
+            <div class="price-title">🎯 Ваш товар</div>
+            <div class="price-amount" id="product-price">166 ₽</div>
+            <div class="price-description" id="product-description">100 звёзд для вашего аккаунта</div>
+            <div class="price-description">Курс: 1 звезда = 1.66 ₽</div>
+        </div>
+        
+        <div class="timer">
+            ⏰ Время на оплату: <span id="countdown">15:00</span>
+        </div>
+        
+        <div class="requisites-card">
+            <div class="requisites-title">💳 Реквизиты для оплаты</div>
+            
+            <div class="requisite-item">
+                <div class="requisite-label">Номер карты</div>
+                <div class="requisite-value" id="card-number">2269 1545 5176 6791</div>
+                <button class="copy-btn" onclick="copyToClipboard('card-number')">📋 Скопировать</button>
+            </div>
+            
+            <div class="requisite-item">
+                <div class="requisite-label">Банк</div>
+                <div class="requisite-value" id="bank">АЛЬФА БАНК</div>
+                <button class="copy-btn" onclick="copyToClipboard('bank')">📋 Скопировать</button>
+            </div>
+            
+            <div class="requisite-item">
+                <div class="requisite-label">Получатель</div>
+                <div class="requisite-value" id="recipient">Иван Иванов</div>
+                <button class="copy-btn" onclick="copyToClipboard('recipient')">📋 Скопировать</button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            💡 После оплаты обязательно отправьте скриншот чека для подтверждения
+        </div>
+        
+        <div class="upload-section">
+            <div class="upload-title">📎 Отправить чек об оплате</div>
+            <input type="file" id="receipt-file" accept="image/*" class="hidden" onchange="handleFileSelect(this)">
+            <button class="upload-btn" onclick="document.getElementById('receipt-file').click()">
+                📸 Выбрать скриншот чека
+            </button>
+            <div class="file-name" id="file-name"></div>
+            
+            <div class="user-info">
+                <div>🆔 ID пользователя: <span id="user-id-display">-</span></div>
+                <div>👤 Username: <span id="username-display">-</span></div>
+                <div>📛 Имя: <span id="user-name-display">-</span></div>
+                <div>💎 Товар: <span id="product-display">100 звёзд</span></div>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn btn-primary" id="send-btn" onclick="sendToAdmin()">
+                📤 Отправить чек админу
+            </button>
+            <button class="btn btn-secondary" onclick="contactSupport()">
+                💬 Связаться с поддержкой
+            </button>
+        </div>
+        
+        <div class="status">
+            🔒 Статус: <span id="payment-status">Ожидаем оплату...</span>
+        </div>
+    </div>
+
     <!-- Окно покупки звёзд -->
     <div class="window" id="buyStarsWindow">
         <div class="window-content">
@@ -754,37 +1184,67 @@
             
             <div class="stars-input-section">
                 <h3>Звёзд</h3>
-                <input type="number" class="stars-input" placeholder="Введите число от 50 до 20 000" min="50" max="20000">
+                <input type="number" class="stars-input" placeholder="Введите число от 50 до 20 000" min="50" max="20000" onchange="updateCustomPrice(this.value)">
             </div>
             
             <div class="packages-section">
                 <h3>Или выберите пакет</h3>
                 
-                <div class="package-option" onclick="selectPackage(this)">
+                <div class="package-option" onclick="selectPackage(this, 50, 83)">
                     <div class="package-info">
                         <div class="package-stars">50 звёзд</div>
                         <div class="package-price">83 ₽ 0.9 $</div>
                     </div>
                 </div>
                 
-                <div class="package-option" onclick="selectPackage(this)">
+                <div class="package-option" onclick="selectPackage(this, 100, 166)">
                     <div class="package-info">
                         <div class="package-stars">100 звёзд</div>
                         <div class="package-price">166 ₽ 1.8 $</div>
                     </div>
                 </div>
                 
-                <div class="package-option" onclick="selectPackage(this)">
+                <div class="package-option" onclick="selectPackage(this, 500, 820)">
                     <div class="package-info">
                         <div class="package-stars">500 звёзд</div>
                         <div class="package-price">820 ₽ 8.9 $</div>
                     </div>
                 </div>
                 
-                <div class="package-option" onclick="selectPackage(this)">
+                <div class="package-option" onclick="selectPackage(this, 1000, 1620)">
                     <div class="package-info">
                         <div class="package-stars">1000 звёзд</div>
                         <div class="package-price">1 620 ₽ 17.6 $</div>
+                    </div>
+                </div>
+
+                <div class="package-option" onclick="selectPackage(this, 2500, 4050)">
+                    <div class="package-info">
+                        <div class="package-stars">2500 звёзд</div>
+                        <div class="package-price">4 050 ₽ 44 $</div>
+                        <div class="package-note">хватит на 100 роз</div>
+                    </div>
+                </div>
+
+                <div class="package-option" onclick="selectPackage(this, 5000, 8000)">
+                    <div class="package-info">
+                        <div class="package-stars">5000 звёзд</div>
+                        <div class="package-price">8 000 ₽ 87 $</div>
+                    </div>
+                </div>
+
+                <div class="package-option" onclick="selectPackage(this, 10000, 16000)">
+                    <div class="package-info">
+                        <div class="package-stars">10000 звёзд</div>
+                        <div class="package-price">16 000 ₽ 174 $</div>
+                    </div>
+                </div>
+
+                <div class="package-option" onclick="selectPackage(this, 20000, 32000)">
+                    <div class="package-info">
+                        <div class="package-stars">20000 звёзд</div>
+                        <div class="package-price">32 000 ₽ 348 $</div>
+                        <div class="package-note">хватит надолго</div>
                     </div>
                 </div>
             </div>
@@ -793,10 +1253,13 @@
                 <a href="#">Ввести промокод</a>
             </div>
             
-            <button class="payment-button" onclick="openPaymentPage()">Оплатить через СБП</button>
+            <button class="payment-button" onclick="openPaymentPage()" id="buyStarsButton">
+                💳 Оплатить <span id="selectedPrice">166</span> ₽
+            </button>
         </div>
     </div>
 
+    <!-- Остальные окна (продажа, TON, Premium) остаются без изменений -->
     <!-- Окно продажи звёзд -->
     <div class="window" id="sellStarsWindow">
         <div class="window-content">
@@ -807,7 +1270,7 @@
             
             <div class="stars-input-section">
                 <h3>Количество звёзд для продажи</h3>
-                <input type="number" class="stars-input" placeholder="Введите количество звёзд" min="1">
+                <input type="number" class="stars-input" placeholder="Введите количество звёзд" min="1" onchange="updateSellPrice(this.value)">
             </div>
             
             <div class="packages-section">
@@ -825,7 +1288,9 @@
                 <input type="text" class="username-input" placeholder="Номер карты" style="display: block;">
             </div>
             
-            <button class="action-button sell-button" onclick="openPaymentPage()">Продать звёзды</button>
+            <button class="action-button sell-button" onclick="openPaymentPage()" id="sellStarsButton">
+                💰 Получить <span id="sellPrice">0</span> ₽
+            </button>
         </div>
     </div>
 
@@ -839,7 +1304,7 @@
             
             <div class="stars-input-section">
                 <h3>Сумма в рублях</h3>
-                <input type="number" class="stars-input" placeholder="Введите сумму в ₽" min="100">
+                <input type="number" class="stars-input" placeholder="Введите сумму в ₽" min="100" onchange="updateTonAmount(this.value)">
             </div>
             
             <div class="packages-section">
@@ -857,7 +1322,9 @@
                 <input type="text" class="username-input" placeholder="Введите адрес кошелька" style="display: block;">
             </div>
             
-            <button class="action-button ton" onclick="openPaymentPage()">Купить TON</button>
+            <button class="action-button ton" onclick="openPaymentPage()" id="buyTonButton">
+                ⚡ Купить <span id="tonAmount">0</span> TON
+            </button>
         </div>
     </div>
 
@@ -893,20 +1360,20 @@
             
             <div class="packages-section">
                 <h3>Выберите тариф</h3>
-                <div class="package-option" onclick="selectPremiumPackage(this)">
+                <div class="package-option" onclick="selectPremiumPackage(this, 299, '1 месяц')">
                     <div class="package-info">
                         <div class="package-stars">1 месяц</div>
                         <div class="package-price">299 ₽ / месяц</div>
                     </div>
                 </div>
-                <div class="package-option" onclick="selectPremiumPackage(this)">
+                <div class="package-option" onclick="selectPremiumPackage(this, 747, '3 месяца')">
                     <div class="package-info">
                         <div class="package-stars">3 месяца</div>
                         <div class="package-price">249 ₽ / месяц</div>
                         <div class="package-note">Экономия 150 ₽</div>
                     </div>
                 </div>
-                <div class="package-option" onclick="selectPremiumPackage(this)">
+                <div class="package-option" onclick="selectPremiumPackage(this, 2388, '12 месяцев')">
                     <div class="package-info">
                         <div class="package-stars">12 месяцев</div>
                         <div class="package-price">199 ₽ / месяц</div>
@@ -915,7 +1382,9 @@
                 </div>
             </div>
             
-            <button class="action-button premium" onclick="openPaymentPage()">Оформить Premium</button>
+            <button class="action-button premium" onclick="openPaymentPage()" id="buyPremiumButton">
+                👑 Оформить за <span id="premiumPrice">299</span> ₽
+            </button>
         </div>
     </div>
 
@@ -950,9 +1419,6 @@
         // Раскрываем на весь экран
         tg.expand();
         
-        // Включаем подтверждение закрытия
-        tg.enableClosingConfirmation();
-        
         // Получаем данные пользователя
         const user = tg.initDataUnsafe.user;
         
@@ -961,6 +1427,12 @@
             document.getElementById('userName').textContent = user.first_name || 'Пользователь';
             document.getElementById('userUsername').textContent = user.username ? '@' + user.username : 'без username';
             document.getElementById('userAvatar').textContent = user.first_name ? user.first_name[0].toUpperCase() : 'Т';
+            
+            // Заполняем информацию на странице оплаты
+            document.getElementById('user-id-display').textContent = user.id;
+            document.getElementById('username-display').textContent = user.username || 'не указан';
+            document.getElementById('user-name-display').textContent = 
+                `${user.first_name || ''} ${user.last_name || ''}`.trim() || 'не указано';
         } else {
             // Если данные пользователя недоступны, показываем тестовые данные
             document.getElementById('userName').textContent = 'user';
@@ -968,7 +1440,14 @@
             document.getElementById('userAvatar').textContent = 'А';
         }
         
-        let selectedPremiumPackage = null;
+        let selectedStars = 100;
+        let selectedPrice = 166;
+        let selectedPremiumPrice = 299;
+        let selectedPremiumPeriod = '1 месяц';
+        let selectedProduct = 'Звёзды';
+        let timeLeft = 15 * 60;
+        let timerInterval;
+        let selectedFile = null;
         
         function openWindow(windowId) {
             document.getElementById(windowId).style.display = 'block';
@@ -992,42 +1471,218 @@
             }
         }
         
-        function selectPackage(element) {
+        function selectPackage(element, stars, price) {
             const packages = element.parentElement.querySelectorAll('.package-option');
             packages.forEach(pkg => pkg.classList.remove('selected'));
             element.classList.add('selected');
             
-            const starsCount = element.querySelector('.package-stars').textContent.split(' ')[0];
-            const starsInput = document.querySelector('#buyStarsWindow .stars-input');
-            if (starsInput) starsInput.value = starsCount;
+            selectedStars = stars;
+            selectedPrice = price;
+            selectedProduct = `${stars} звёзд`;
+            
+            document.getElementById('selectedPrice').textContent = price;
+            document.querySelector('#buyStarsWindow .stars-input').value = stars;
         }
         
-        function selectPremiumPackage(element) {
+        function updateCustomPrice(stars) {
+            if (stars >= 50 && stars <= 20000) {
+                // Расчет цены по курсу 1.66 ₽ за звезду
+                const price = Math.round(stars * 1.66);
+                selectedStars = parseInt(stars);
+                selectedPrice = price;
+                selectedProduct = `${stars} звёзд`;
+                document.getElementById('selectedPrice').textContent = price;
+                
+                // Снимаем выделение с пакетов
+                const packages = document.querySelectorAll('#buyStarsWindow .package-option');
+                packages.forEach(pkg => pkg.classList.remove('selected'));
+            }
+        }
+        
+        function updateSellPrice(stars) {
+            if (stars >= 1) {
+                const price = Math.round(stars * 1.5);
+                document.getElementById('sellPrice').textContent = price;
+                selectedPrice = price;
+                selectedProduct = `Продажа ${stars} звёзд`;
+            }
+        }
+        
+        function updateTonAmount(rubAmount) {
+            if (rubAmount >= 100) {
+                const tonAmount = (rubAmount / 172).toFixed(4);
+                document.getElementById('tonAmount').textContent = tonAmount;
+                selectedPrice = rubAmount;
+                selectedProduct = `${tonAmount} TON`;
+            }
+        }
+        
+        function selectPremiumPackage(element, price, period) {
             const packages = element.parentElement.querySelectorAll('.package-option');
             packages.forEach(pkg => pkg.classList.remove('selected'));
             element.classList.add('selected');
             
-            selectedPremiumPackage = element;
+            selectedPremiumPrice = price;
+            selectedPremiumPeriod = period;
+            selectedPrice = price;
+            selectedProduct = `Premium ${period}`;
+            document.getElementById('premiumPrice').textContent = price;
         }
         
         // Функция для открытия страницы оплаты
         function openPaymentPage() {
-            const paymentUrl = "https://botlucky1.github.io/botontheoplata/";
-            
-            // Открываем ссылку в новом окне/вкладке
-            if (tg && tg.openLink) {
-                // В Telegram Web App открываем ссылку через встроенный браузер
-                tg.openLink(paymentUrl);
-            } else {
-                // В обычном браузере открываем в новой вкладке
-                window.open(paymentUrl, '_blank');
+            // Определяем тип платежа
+            let productDescription = '';
+            if (event.target.closest('#buyStarsWindow')) {
+                productDescription = `${selectedStars} звёзд для вашего аккаунта`;
+            } else if (event.target.closest('#premiumWindow')) {
+                productDescription = `Premium подписка ${selectedPremiumPeriod}`;
+            } else if (event.target.closest('#tonWindow')) {
+                const tonAmount = document.getElementById('tonAmount').textContent;
+                productDescription = `${tonAmount} TON`;
+            } else if (event.target.closest('#sellStarsWindow')) {
+                const starsAmount = document.querySelector('#sellStarsWindow .stars-input').value;
+                productDescription = `Продажа ${starsAmount} звёзд`;
             }
             
-            // Закрываем текущее окно
+            // Обновляем данные на странице оплаты
+            document.getElementById('product-price').textContent = `${selectedPrice} ₽`;
+            document.getElementById('product-description').textContent = productDescription;
+            document.getElementById('product-display').textContent = selectedProduct;
+            
+            // Показываем страницу оплаты и скрываем главную
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('paymentPage').style.display = 'block';
+            
+            // Закрываем все окна
             const activeWindows = document.querySelectorAll('.window');
             activeWindows.forEach(window => {
                 window.style.display = 'none';
             });
+            
+            // Запускаем таймер
+            startTimer();
+        }
+        
+        function goBackToMain() {
+            document.getElementById('paymentPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+            clearInterval(timerInterval);
+        }
+        
+        function startTimer() {
+            timeLeft = 15 * 60;
+            clearInterval(timerInterval);
+            
+            timerInterval = setInterval(function() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                document.getElementById('countdown').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('payment-status').textContent = '⏰ Время вышло!';
+                    document.getElementById('payment-status').style.color = '#ff6b6b';
+                } else {
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+        
+        function handleFileSelect(input) {
+            if (input.files && input.files[0]) {
+                selectedFile = input.files[0];
+                document.getElementById('file-name').textContent = `✅ Выбран файл: ${selectedFile.name}`;
+                document.getElementById('payment-status').textContent = 'Файл готов к отправке';
+                document.getElementById('payment-status').style.color = '#4bc0c8';
+            }
+        }
+        
+        async function sendToAdmin() {
+            if (!selectedFile) {
+                alert('Пожалуйста, выберите скриншот чека');
+                return;
+            }
+            
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.classList.add('loading');
+            sendBtn.textContent = '📤 Отправляем...';
+            document.getElementById('payment-status').textContent = 'Отправляем чек админу...';
+            
+            try {
+                // Имитация отправки (в реальном приложении здесь будет API запрос)
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Успешная отправка
+                document.getElementById('payment-status').textContent = '✅ Чек успешно отправлен! Ожидайте подтверждения';
+                document.getElementById('payment-status').style.color = '#00e676';
+                
+                // Показываем сообщение об успехе
+                showSuccessMessage();
+                clearInterval(timerInterval);
+                
+            } catch (error) {
+                console.error('Ошибка отправки:', error);
+                alert('Ошибка отправки: ' + error.message);
+                document.getElementById('payment-status').textContent = '❌ Ошибка отправки';
+                document.getElementById('payment-status').style.color = '#ff6b6b';
+            } finally {
+                sendBtn.classList.remove('loading');
+                sendBtn.textContent = '📤 Отправить чек админу';
+            }
+        }
+        
+        function showSuccessMessage() {
+            const successHTML = `
+                <div class="success-message">
+                    <div class="success-title">✅ Чек отправлен!</div>
+                    <div style="margin-bottom: 15px; color: rgba(255,255,255,0.9);">
+                        Админ получил ваш чек и проверит оплату в ближайшее время
+                    </div>
+                    <div style="font-size: 12px; opacity: 0.8;">
+                        ID транзакции: #${Date.now().toString().slice(-6)}
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button class="btn btn-primary" onclick="closeApp()">
+                        ✅ Готово
+                    </button>
+                    <button class="btn btn-secondary" onclick="goBackToMain()">
+                        🔄 Новый платёж
+                    </button>
+                </div>
+            `;
+            
+            document.querySelector('#paymentPage .buttons').innerHTML = successHTML;
+        }
+        
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Скопировано!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+        
+        function contactSupport() {
+            const supportUsername = 'artem4514';
+            if (tg && tg.openLink) {
+                tg.openLink(`https://t.me/${supportUsername}`);
+            } else {
+                window.open(`https://t.me/${supportUsername}`, '_blank');
+            }
+        }
+        
+        function closeApp() {
+            if (tg && tg.close) {
+                tg.close();
+            }
         }
         
         // Закрытие окон по клику на фон
@@ -1050,6 +1705,10 @@
             // Выбираем первый пакет по умолчанию
             const firstPackage = document.querySelector('#buyStarsWindow .package-option');
             if (firstPackage) firstPackage.click();
+            
+            // Инициализируем цены для других окон
+            document.getElementById('sellPrice').textContent = '0';
+            document.getElementById('tonAmount').textContent = '0.0000';
         });
     </script>
 </body>
